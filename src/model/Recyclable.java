@@ -9,7 +9,16 @@ public class Recyclable extends Residue{
 	public final String M="metal";
 	
 	private String type;
-	//private String description;
+	private String description;
+
+	public Recyclable(String pindicator, String pname, String porigin, String pcolor, int pdesTime, String pProduct, String pType){
+
+		super(pindicator, pname, porigin, pcolor, pdesTime,pProduct);
+
+		type=ptype;
+		description=pdescription;
+
+	}
 	
 
 }
