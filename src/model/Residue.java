@@ -1,6 +1,6 @@
 package model;
 
-public class Residue {
+public class abstract Residue {
 	
 	public final String IND="industrie";
 	public final String DOM="dominicilie";
@@ -15,5 +15,23 @@ public class Residue {
 	private int desTime;
 	private String product;
 	
+	public Residue(String pindicator, String pname, String porigin, String pcolor, int pdesTime, String pProduct){
+
+		indicator=pindicator;
+		name=pname;
+		origin=porigin;
+		color=pcolor;
+		desTime=pdesTime;
+		product=pProduct;
+
+	}
+
+	public  void getIndicador(){
+		return indicator;
+	}
+
+	public void getName(){
+		return name;
+	}
 
 }
