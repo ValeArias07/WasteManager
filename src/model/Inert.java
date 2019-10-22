@@ -16,8 +16,9 @@ public class Inert extends Residue{
 		return recommendation;
 	}
 
-	public void setRecommendation(String recommendation) {
-		this.recommendation = recommendation;
+	@Override
+	public String toString() {
+		return "\n indicator="+super.getIndicator() + "\n name=" + super.getName() + "\n origin="+ super.getOrigin()+ "\n color="+ super.getColor() + "\n recommendation=" + recommendation + "\n ___________________________";
 	}
-	
+
 }
