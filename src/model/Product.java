@@ -4,124 +4,88 @@ import java.util.Arrays;
 
 public class Product {
 	
+	static final int MAXR=15; 
+	
+	private String proName;
 	private String id;
-	private String proname;
 	private String prodescription;
 	
-	private Residue residuesP[];
+	private Residue residues[];
 	
-	
-public Product(String pid, String pProname, String pProdescription, int cantR) {
-	
-	id=pid;
-	proname=pProname;
-	prodescription=pProdescription;
-	
-	residuesP= new Residue[cantR];
-
+	public Product(String pProname, String pid, String pProdescription) {
+		
+		proName=pProname;
+		id=pid;
+		prodescription=pProdescription;
+		
+		residues= new Residue[MAXR];
+		
 	}
- public String addResidue(String option, String pindicator, String pname, String porigin, String pcolor, int pdesTime, String pProduct,String ptype, String pdescription){
-
-    boolean duplicated=repeatName(pname);
-    String message=" ";
-    
-    int ubi=ubication();
-    
-    if(duplicated==false){
-
-        message="Waste registered sucessfully";
-        residuesP[ubi]= new Recyclable(pindicator,pname,porigin,pcolor,pdesTime,pProduct,ptype,pdescription);
-    	 }
-    return message;
-}
-
-
-public String addResidue(String option, String pindicator, String pname, String porigin, String pcolor, int pdesTime, String pProduct,boolean pcomposting){
-
-    boolean duplicated=repeatName(pname);
-    String message="";
-    int ubi=ubication();
-    
-    if(duplicated==false){
-        message="Waste registered sucessfully";
-        residuesP[ubi]= new Biodegradable(pindicator,pname,porigin,pcolor,pdesTime,pProduct,pcomposting);
-    }
-    return message;
-}
-
-public String addResidue(String option, String pindicator, String pname, String porigin, String pcolor, int pdesTime, String pProduct,String pRecommendation){
-
-    boolean duplicated=repeatName(pname);
-    String message="";
-    int ubi=ubication();
-    
-    if(duplicated==false){
-    	
-        message="Waste registered sucessfully";
-        residuesP[ubi]= new Inert(pindicator,pname,porigin, pcolor,pdesTime,pProduct,pRecommendation);
-        
-    }
-    else
-    message="Sorry, you cant register this waste because is duplicated";
-    return message;
-
-}
-
-public boolean repeatName(String pname){
-
-    boolean duplicated=false;
-
-    for(int i=0; i<residuesP.length && duplicated==false; i-=-1){
-    
-        if(residuesP[i]!=null){
-         String testName=residuesP[i].getName();
-            if(testName.equals(pname)){
-
-                duplicated=true;
-            }
-        }
-    }
-    return duplicated;
-  }
-
-public int ubication() {
 	
-	int ubi=-1;
-	boolean found=false;
-	
-	for(int i=0; i<residuesP.length && found==false; i-=-1){
-	    
-        if(residuesP[i]!=null){
-        	ubi++;
-        	}
+	public boolean addResidue(Residue residue) {
+		boolean registered;
+		int ubi = ubicationR();
+		if(ubi!=-1) {
+			
+			residues[ubi] = residue;
+			registered = true;
 		}
-	return ubi;
+		else 
+			registered = false;
+		
+		return registered;
 	}
+	
+	
+	public boolean repeatNameR(String pProname){
 
+	    boolean duplicated=false;
 
-	public String getId() {
-		return id;
+	    for(int i=0; i<residues.length && duplicated==false; i-=-1){
+	    
+	        if(residues[i]!=null){
+	         String testName=residues[i].getName();
+	            if(testName.equals(pProname)){
+
+	                duplicated=true;
+	            }
+	        }
+	    }
+	    return duplicated;
+	  }
+
+	public int ubicationR() {
+		
+		int ubi=-1;
+		boolean found=false;
+		
+		for(int i=0; i<residues.length && found==false; i-=-1){
+		    
+	        if(residues[i]!=null){
+	        	ubi++;
+	        	}
+			}
+		return ubi;
 		}
 	
 	public String getProname() {
-		return proname;
-		}
-	
+		return proName;
+	}
+
+	public String getId() {
+		return id;
+	}
+
 	public String getProdescription() {
 		return prodescription;
-		}
-	
-	public Residue[] getResiduesP() {
-		return residuesP;
-		}
-	@Override
+	}
+
 	public String toString() {
-		return "\n Product name="  + proname + "\n identificator=" + id + "\n Description="+ prodescription + "\n Residues=" + Arrays.toString(residuesP);
+		return "\n Product name="  + proName + "\n identificator=" + id + "\n Description="+ prodescription;
 	}
 	
 	public String toStringR() {
-		return "\n Total Waste=" + Arrays.toString(residuesP);
+		return "All product residues=" + "\n" + Arrays.toString(residues);
 	}
-
 }
 

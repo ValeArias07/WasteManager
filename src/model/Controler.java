@@ -5,75 +5,73 @@ public class Controler {
 private Product products[];
 private Residue residues[];
 
-public Controler (){
-
- products=new Product[100];
- residues= new Residue[100];
-
-}
-
-public String addResidue(String option, String pindicator, String pname, String porigin, String pcolor, int pdesTime, String pProduct,String ptype, String pdescription){
-
-    boolean duplicated=repeatNameR(pname);
-    String message=" ";
-    
-    int ubi=ubicationR();
-    
-    if(duplicated==false){
-
-        message="Waste registered sucessfully";
-        residues[ubi]= new Recyclable(pindicator,pname,porigin,pcolor,pdesTime,pProduct,ptype,pdescription);
-    	 }
-    return message;
-}
-
-
-public String addResidue(String option, String pindicator, String pname, String porigin, String pcolor, int pdesTime, String pProduct,boolean pcomposting){
-
-    boolean duplicated=repeatNameR(pname);
-    String message="";
-    int ubi=ubicationR();
-    
-    if(duplicated==false){
-        message="Waste registered sucessfully";
-        residues[ubi]= new Biodegradable(pindicator,pname,porigin,pcolor,pdesTime,pProduct,pcomposting);
-    }
-    return message;
-}
-
-public String addResidue(String option, String pindicator, String pname, String porigin, String pcolor, int pdesTime, String pProduct,String pRecommendation){
-
-    boolean duplicated=repeatNameR(pname);
-    String message="";
-    int ubi=ubicationR();
-    
-    if(duplicated==false){
-    	
-        message="Waste registered sucessfully";
-        residues[ubi]= new Inert(pindicator,pname,porigin, pcolor,pdesTime,pProduct,pRecommendation);
-        
-    }
-    else
-    message="Sorry, you cant register this waste because is duplicated";
-    return message;
-
-}
-
-public String createProduct(String pid, String pProname, String pProdescription, int cantR){
+public Controler (int n ){
 	
-	 boolean duplicated=repeatNameP(pProname);
-	    String message="";
-	    int ubi=ubicationP();
-	    
-	    if(duplicated==false){
-	    	
-	        message="Product registered sucessfully";
-	        products[ubi]= new Product(pid,pProname, pProdescription,cantR);
-	        
-	    }
-	    else
-	    message="Sorry, you cant register this product because is duplicated";
-	    return message;
+ products=new Product[n];
+ residues= new Residue[Product.MAXR*n];
+
+}
+public String addProducto(String pProname, String pid, String pProdescription) {
+	
+	int ubi=ubicationP();
+	boolean duplicated=repeatNameP(pProname);
+	boolean duplicatedId=repeatId(pid);
+	
+	String info;
+	if(ubi!=-1 && duplicatedId==false && duplicated==false) {
+		products[ubi] = new Product(pProname,pid,pProdescription);
+		info="Product registered sucessfully";
+	}
+	else
+		info="Sorry, you cant register this product because it name or id is duplicated";
+	
+	return info;
+}
+
+public String addResiduo(String pindicator, String pname, String porigin, String pcolor, int pdesTime, String pRecommendation,Product productAssociated) {
+	boolean reply;
+	String info;
+	int ubi=ubicationR();
+	
+	if(ubi!=-1 && repeatNameR(pname)==false) {
+		
+		residues[ubi] = new Inert (pindicator, pname,porigin, products[searchPositionPname(pname)], pcolor, pdesTime, pRecommendation);
+		 
+		reply = products[searchPositionPname(pname)].addResidue(residues[ubi]);
+		
+		if(reply == false) {
+			residues[ubi]=null;
+			
+			info=" Error. The residue cant be register, the associeted product had using all it Residues amount" + Product.MAXR;
+		}
+		else
+			info="Registered Successfull";
+	}
+	else
+		info="No se pudo registrar, todos los productos estan llenos o el nombre ingresado ya lo tiene otro producto";
+	
+	return info;
+	
+}
+
+
+public int searchPositionPname(String pname) {
+	int position = -1;
+	String name;
+	boolean found = false;
+	for(int i=0; i<products.length && found == false; i++) {
+		
+		if(products[i]!=null) {
+			
+			name=products[i].getProname();
+			if(name.equals(pname)) {
+				position = i;
+				found = true;
+			}
+		}
+	}
+	
+	return position;
 }
 
 public boolean repeatNameR(String pProname){
@@ -93,19 +91,22 @@ public boolean repeatNameR(String pProname){
     return duplicated;
   }
 
-public int ubicationR() {
-	
-	int ubi=-1;
-	boolean found=false;
-	
-	for(int i=0; i<residues.length && found==false; i-=-1){
-	    
-        if(residues[i]!=null){
-        	ubi++;
-        	}
-		}
-	return ubi;
-	}
+public boolean repeatId(String pid){
+
+    boolean duplicated=false;
+
+    for(int i=0; i<products.length && duplicated==false; i-=-1){
+    
+        if(products[i]!=null){
+         String testId=products[i].getId();
+            if(testId.equals(pid)){
+
+                duplicated=true;
+            }
+        }
+    }
+    return duplicated;
+  }
 
 public boolean repeatNameP(String pname){
 
@@ -114,6 +115,7 @@ public boolean repeatNameP(String pname){
     for(int i=0; i<products.length && duplicated==false; i-=-1){
     
         if(products[i]!=null){
+        	
          String testName=products[i].getProname();
             if(testName.equals(pname)){
 
@@ -124,6 +126,21 @@ public boolean repeatNameP(String pname){
     return duplicated;
   }
 
+public int ubicationR() {
+	
+	int ubi=-1;
+	boolean found=false;
+	
+	for(int i=0; i<residues.length && found==false; i-=-1){
+	    
+        if(residues[i]!=null){
+        	ubi=i;
+        	found=true;
+        	}
+		}
+	return ubi;
+	}
+
 public int ubicationP() {
 	
 	int ubi=-1;
@@ -131,8 +148,9 @@ public int ubicationP() {
 	
 	for(int i=0; i<products.length && found==false; i-=-1){
 	    
-        if(products[i]!=null){
-        	ubi++;
+        if(products[i]==null){
+        	ubi=i;
+        	found=true;
         	}
 		}
 	return ubi;

@@ -12,9 +12,9 @@ public class Recyclable extends Residue{
 	private String description;
 	private boolean usable;
 
-	public Recyclable(String pindicator, String pname, String porigin, String pcolor, int pdesTime, String pProduct, String pType, String pdescription){
+	public Recyclable(String pindicator, String pname, String porigin,Product productAssociated, String pcolor, int pdesTime, String pProduct, String pType, String pdescription){
 
-		super(pindicator, pname, porigin, pcolor, pdesTime,pProduct);
+		super( pindicator,pname,porigin,productAssociated, pcolor,pdesTime);
 
 		type=pType;
 		description=pdescription;

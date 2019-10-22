@@ -14,18 +14,20 @@ public class Residue{
 	private String origin;
 	private String color;
 	private int desTime;
-	private String product;
 	private double harmfulLevel;
 	
-	public Residue(String pindicator, String pname, String porigin, String pcolor, int pdesTime, String pProduct){
+	private Product product;
+	
+	public Residue(String pindicator, String pname, String porigin, Product productAssociated, String pcolor, int pdesTime){
 
 		indicator=pindicator;
 		name=pname;
 		origin=porigin;
 		color=pcolor;
 		desTime=pdesTime;
-		product=pProduct;
+		product= productAssociated;
 		harmfulLevel=calculateHarm();
+		
 
 	}
 
@@ -48,9 +50,7 @@ public class Residue{
 	public int getDesTime() {
 		return desTime;
 	}
-	public String getProduct() {
-		return product;
-	}
+
 	public double getHarm() {
 		return harmfulLevel;
 	}

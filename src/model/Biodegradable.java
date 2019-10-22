@@ -5,8 +5,8 @@ public class Biodegradable extends Residue{
 	private boolean composting;
 	private boolean usable;
 
-	public Biodegradable(String pindicator, String pname, String porigin, String pcolor, int pdesTime, String pProduct, boolean pcomposting){
-	super(pindicator, pname, porigin, pcolor, pdesTime,pProduct);
+	public Biodegradable(String pindicator, String pname, String porigin, Product productAssociated, String pcolor, int pdesTime, String pProduct, boolean pcomposting){
+	super( pindicator,pname,porigin,productAssociated, pcolor,pdesTime);
 
 	composting=pcomposting;
 	usable=isUsable();
