@@ -1,6 +1,6 @@
 package model;
 
-public class Recyclable extends Residue{
+public class Recyclable extends Residue implements Usable{
 	
 	public final String P="paper";
 	public final String PB="paperboard";
@@ -12,7 +12,7 @@ public class Recyclable extends Residue{
 	private String description;
 	private boolean usable;
 
-	public Recyclable(String pindicator, String pname, String porigin,Product productAssociated, String pcolor, int pdesTime, String pProduct, String pType, String pdescription){
+	public Recyclable(String pindicator, String pname, String porigin,Product productAssociated, String pcolor, int pdesTime, String pType, String pdescription){
 
 		super( pindicator,pname,porigin,productAssociated, pcolor,pdesTime);
 
@@ -56,7 +56,7 @@ public class Recyclable extends Residue{
 		else
 			usabled="No";
 		
-		return "\n indicator="+super.getIndicator() + "\n name=" + super.getName() + "\n origin="+ super.getOrigin()+ "\n color="+ super.getColor() + "\n type=" + type + "\n description=" + description + "\n It  is usable?=" + usabled + "\n ___________________________";
+		return "\n indicator: " + super.getIndicator() + "\n name: " + super.getName() + "\n origin: "+ super.getOrigin()+ "\n color: "+ super.getColor() + "\n descomposition time:  " +super.getDesTime() + "\n type:" + type + "\n description:" + description + "\n It  is usable?:" + usabled + "\n___________________";
 	}
 	
 }

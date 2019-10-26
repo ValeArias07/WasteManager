@@ -3,11 +3,11 @@ package model;
 public class Residue{
 	
 	
-	public final String IND="industrie";
-	public final String DOM="dominicilie";
-	public final String MUN="municipal";
-	public final String CONS="construction";
-	public final String HOS="hospitalary";
+	static final String IND="industrie";
+	static final String DOM="dominicilie";
+	static final String MUN="municipal";
+	static final String CONS="construction";
+	static final String HOS="hospitalary";
 	
 	private String indicator;
 	private String name;
@@ -86,4 +86,6 @@ public class Residue{
 							
 		return pharmful;
 	}
+
+	
 }

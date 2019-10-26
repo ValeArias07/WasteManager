@@ -1,11 +1,11 @@
 package model;
 
-public class Biodegradable extends Residue{
+public class Biodegradable extends Residue implements Usable{
 	
 	private boolean composting;
 	private boolean usable;
 
-	public Biodegradable(String pindicator, String pname, String porigin, Product productAssociated, String pcolor, int pdesTime, String pProduct, boolean pcomposting){
+	public Biodegradable (String pindicator, String pname, String porigin, Product productAssociated, String pcolor, int pdesTime,boolean pcomposting){
 	super( pindicator,pname,porigin,productAssociated, pcolor,pdesTime);
 
 	composting=pcomposting;
@@ -58,7 +58,7 @@ public class Biodegradable extends Residue{
 		else
 			usabled="No";
 		
-		return "\n indicator="+super.getIndicator() + "\n name=" + super.getName() + "\n origin="+ super.getOrigin()+ "\n color="+ super.getColor() + "\n It  is compostable?=" + compostable  + "\n It  is usable?=" + usabled + "\n ___________________________";
+		return "\n indicator: " +super.getIndicator() + "\n name: " + super.getName() + "\n origin: "+ super.getOrigin()+ "\n color: "+ super.getColor() + "\n descomposition time: " +super.getDesTime() + "\n It  is compostable?: " + compostable  + "\n It  is usable?: " + usabled + "\n ___________________";
 	}
 	
 }

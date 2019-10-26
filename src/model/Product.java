@@ -56,10 +56,10 @@ public class Product {
 
 	public int ubicationR() {
 		
-		int ubi=-1;
+		int ubi=0;
 		boolean found=false;
 		
-		for(int i=0; i<residues.length && found==false; i-=-1){
+		for(int i=0; i<residues.length && found==false; i++){
 		    
 	        if(residues[i]!=null){
 	        	ubi++;
@@ -81,11 +81,22 @@ public class Product {
 	}
 
 	public String toString() {
-		return "\n Product name="  + proName + "\n identificator=" + id + "\n Description="+ prodescription;
+		return "\n Product name: "  + proName + "\n identificator: " + id + "\n Description: "+ prodescription;
 	}
 	
 	public String toStringR() {
-		return "All product residues=" + "\n" + Arrays.toString(residues);
+		String infoR="";
+		
+		for(int i=0; i<residues.length; i++) {
+			if(residues[i]!=null) {
+				
+				infoR +=residues[i].toString();
+			}
+			else 
+				infoR="There is no residues registred in this product";
+		}
+		
+		return "All product residues: \n"+ infoR;
 	}
 }
 
