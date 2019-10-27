@@ -348,7 +348,7 @@ public String showAllP() {
 		
 		if(products[i]!=null) {
 			
-			info+= products[i].toString()+ "\n";
+			info+= products[i].toString() + "\n" + "Residues associated \n" + products[i].toStringR;
 		}
 	}
 	
