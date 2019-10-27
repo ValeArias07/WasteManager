@@ -58,7 +58,7 @@ public class Biodegradable extends Residue implements Usable{
 		else
 			usabled="No";
 		
-		return "\n indicator: " +super.getIndicator() + "\n name: " + super.getName() + "\n origin: "+ super.getOrigin()+ "\n color: "+ super.getColor() + "\n descomposition time: " +super.getDesTime() + "\n It  is compostable?: " + compostable  + "\n It  is usable?: " + usabled + "\n ___________________";
+		return "Type of Residue: Biodegrabable \n Indicator: " + super.getIndicator() + "\n Name: " + super.getName() + "\n Origin: "+ super.getOrigin() + "\n Harm level: "+ super.getHarm() + "\n Color: "+ super.getColor() + "\n Descomposition time:  " +super.getDesTime() + "\n It  is compostable?: " + compostable  + "\n It  is usable?: " + usabled + "\n ___________________";
 	}
 	
 }

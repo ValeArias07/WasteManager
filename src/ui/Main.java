@@ -63,6 +63,9 @@ public class Main {
 				
 			case(5):
 				System.out.println(controler.showAllR());
+				break;
+			case(6):
+				System.out.println(controler.harmOrder());
 			}	
 		}
 			
@@ -142,8 +145,6 @@ public String createProductWithName(String pProname) {
 			System.out.println("Write the time of descomposition");
 			int pdesTime=lectorN.nextInt();
 			
-			System.out.println(controler.ubicationR());
-			
 				switch(optionR) {
 				
 				case(1):
@@ -152,8 +153,13 @@ public String createProductWithName(String pProname) {
 					
 					String ans=lectorL.nextLine(); 
 					
-					boolean pcomposting;
+				while(!(ans.equals("no")) && !(ans.equals("yes"))) {
 					
+					System.out.println("Write again.It is composting");
+					 ans=lectorL.nextLine(); 	
+				}
+					boolean pcomposting;
+				
 					if(ans.equalsIgnoreCase("no")) 
 						pcomposting=false;
 							else
@@ -190,7 +196,7 @@ public String createProductWithName(String pProname) {
 		
 		String info="";
 		
-		System.out.println("How you want to search the residue, using name or id?");
+		System.out.println("How you want to search the residue, using the residue name or the product id?");
 		String option=lectorL.nextLine();
 		
 		if(option.equalsIgnoreCase("name")) {

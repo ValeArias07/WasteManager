@@ -1,4 +1,5 @@
 package model;
+import java.util.Collections;
 
 public class Controler {
 
@@ -373,7 +374,7 @@ public String searchName (String pname) {
 			testName=residues[i].getName();
 			if(testName.equals(pname)) {
 				
-				info="Information found" + ((Biodegradable)residues[i]).toString();
+				info="Information found \n" + ((Biodegradable)residues[i]).toString();
 				found=true;
 			}
 		}
@@ -384,7 +385,7 @@ public String searchName (String pname) {
 					
 					if(testName.equals(pname)) {
 						
-						info="Information found" + ((Recyclable)residues[i]).toString();
+						info="Information found \n" + ((Recyclable)residues[i]).toString();
 						found=true;
 					}
 				}
@@ -396,7 +397,7 @@ public String searchName (String pname) {
 						
 					if(testName.equals(pname)) {
 							
-						info="Information found" + ((Inert)residues[i]).toString();
+						info="Information found \n" + ((Inert)residues[i]).toString();
 						found=true;
 					}	
 				}
@@ -430,6 +431,28 @@ public String searchId(String id) {
 		}
 	return info;
 	}
+
+/** This method take the harm level of every residue and order the array since the most harmful to least the harmful
+ * @return info  is the message that show the arrays ordered
+ */
+public String harmOrder() {
+	String info="";
+	for(int i=0; i<residues.length;i++) {
+		
+		if(residues[i]!=null && residues[i+1]!=null) {
+			if(residues[i].getHarm()<residues[i+1].getHarm()) {
+				residues[i+1]=residues[i];
+			}
+		}
+	}
+	
+	for(int i=0; i<residues.length;i++) {
+		
+		if(residues[i]!=null)
+		 info+= "\n" + residues[i].toString();
+	}
+	return info;
+}
 
 /** These methods just catch the constants of the class Product and Residue.
   @return Residue.IND is the constant that be used in main.

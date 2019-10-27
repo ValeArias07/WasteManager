@@ -16,7 +16,7 @@ public class Inert extends Residue{
  */ 
 public String toString() {
 
-		return "\n indicator: " + super.getIndicator() + "\n name: " + super.getName() + "\n origin: "+ super.getOrigin() + "\n color: "+ super.getColor() + "\n descomposition time:  " + super.getDesTime() + "\n recomendation: " + recommendation + "\n ___________________";
+		return "Type of Residue: Inert \n Indicator: " + super.getIndicator() + "\n Name: " + super.getName() + "\n Origin: "+ super.getOrigin() + "\n Harm level: "+ super.getHarm() + "\n Color: "+ super.getColor() + "\n Descomposition time:  " +super.getDesTime() + "\n Recomendation: " + recommendation + "\n ___________________";
 	
 	}
 }

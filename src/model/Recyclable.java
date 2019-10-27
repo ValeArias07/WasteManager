@@ -59,7 +59,7 @@ public class Recyclable extends Residue implements Usable{
 		else
 			usabled="No";
 		
-		return "\n indicator: " + super.getIndicator() + "\n name: " + super.getName() + "\n origin: "+ super.getOrigin()+ "\n color: "+ super.getColor() + "\n descomposition time:  " +super.getDesTime() + "\n type: " + type + "\n description: " + description + "\n It  is usable?: " + usabled + "\n___________________";
+		return "Type of residue: Recyclable \n Indicator: " + super.getIndicator() + "\n Name: " + super.getName() + "\n Origin: "+ super.getOrigin() + "\n Harm level: "+ super.getHarm() + "\n Color: "+ super.getColor() + "\n Descomposition time:  " +super.getDesTime() + "\n Type: " + type + "\n Description: " + description + "\n It  is usable?: " + usabled + "\n___________________";
 	}
 	
 }

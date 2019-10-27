@@ -96,7 +96,7 @@ public class Product {
 		return "\n Product name: "  + proName + "\n identificator: " + id + "\n Description: "+ prodescription;
 	}
 	
-/** This toString method contains all the information about a residues of the objetc product
+/** This toString method contains all the information about a residues of the object product
  */
 	public String toStringR() {
 		String infoR="";
@@ -106,8 +106,7 @@ public class Product {
 				
 				infoR +=residues[i].toString();
 			}
-			else 
-				infoR="There is no residues registred in this product";
+
 		}
 		
 		return "All product residues: \n"+ infoR;
