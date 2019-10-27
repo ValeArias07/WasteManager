@@ -2,11 +2,11 @@ package model;
 
 public class Recyclable extends Residue implements Usable{
 	
-	public final String P="paper";
-	public final String PB="paperboard";
-	public final String G="glass";
-	public final String PL="plastic";
-	public final String M="metal";
+	static final String P="Paper";
+	static final String PB="Paperboard";
+	static final String G="Glass";
+	static final String PL="Plastic";
+	static final String M="Metal";
 	
 	private String type;
 	private String description;
@@ -24,7 +24,9 @@ public class Recyclable extends Residue implements Usable{
 	public double getHarm() {
 		return super.getHarm();
 	}
-	
+/** This method determinate if the recyclable residue is usable or not
+ * @return pusable determinate if the residue recyclable is usable or not depending the description
+ */
 	public boolean isUsable() {
 		
 		boolean pusable=false;
@@ -35,7 +37,8 @@ public class Recyclable extends Residue implements Usable{
 		
 		return pusable;
 	}
-
+/** This method recalculate the harmful level or the residue Recyclable
+ */
 	public void recalculateHarm() {
 		
 		double harmLevel=0.0;
@@ -45,8 +48,8 @@ public class Recyclable extends Residue implements Usable{
 		
 		super.setHarm(harmLevel);
 	}
-	
-	
+/** This toString method contains all the information about the objetc Recyclable
+ */
 	public String toString() {
 		
 		String usabled="";
@@ -56,7 +59,7 @@ public class Recyclable extends Residue implements Usable{
 		else
 			usabled="No";
 		
-		return "\n indicator: " + super.getIndicator() + "\n name: " + super.getName() + "\n origin: "+ super.getOrigin()+ "\n color: "+ super.getColor() + "\n descomposition time:  " +super.getDesTime() + "\n type:" + type + "\n description:" + description + "\n It  is usable?:" + usabled + "\n___________________";
+		return "\n indicator: " + super.getIndicator() + "\n name: " + super.getName() + "\n origin: "+ super.getOrigin()+ "\n color: "+ super.getColor() + "\n descomposition time:  " +super.getDesTime() + "\n type: " + type + "\n description: " + description + "\n It  is usable?: " + usabled + "\n___________________";
 	}
 	
 }

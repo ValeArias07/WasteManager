@@ -3,11 +3,11 @@ package model;
 public class Residue{
 	
 	
-	static final String IND="industrie";
-	static final String DOM="dominicilie";
-	static final String MUN="municipal";
-	static final String CONS="construction";
-	static final String HOS="hospitalary";
+	static final String IND="Industrie";
+	static final String DOM="Dominicilie";
+	static final String MUN="Municipal";
+	static final String CONS="Construction";
+	static final String HOS="Hospitalary";
 	
 	private String indicator;
 	private String name;
@@ -30,7 +30,8 @@ public class Residue{
 		
 
 	}
-
+//Getters and Setters methods
+	
 	public  String getIndicator(){
 		return indicator;
 	}
@@ -59,7 +60,9 @@ public class Residue{
 		harmfulLevel=harmLevel;
 		return harmfulLevel;
 	}
-	
+/** This method calculate the harm that produced a residue
+ * @return pharmful is the harmful level of the residue depending their origin
+ */
 	public double calculateHarm() {
 		
 		double pharmful=0.0;

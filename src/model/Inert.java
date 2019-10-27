@@ -12,10 +12,11 @@ public class Inert extends Residue{
 
 	}
 
-
+/** This toString method contains all the information about a the object Inert
+ */ 
 public String toString() {
 
-		return "\n indicator: " + super.getIndicator() + "\n name: " + super.getName() + "\n origin: "+ super.getOrigin() + "\n color: "+ super.getColor() + "\n descomposition time:  " + super.getDesTime() + "recomendation" + recommendation + "\n ___________________";
+		return "\n indicator: " + super.getIndicator() + "\n name: " + super.getName() + "\n origin: "+ super.getOrigin() + "\n color: "+ super.getColor() + "\n descomposition time:  " + super.getDesTime() + "\n recomendation: " + recommendation + "\n ___________________";
 	
 	}
 }

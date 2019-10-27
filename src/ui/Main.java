@@ -1,6 +1,6 @@
-package model;
+package ui;
 import java.util.Scanner;
-
+import model.Controler;
 
 public class Main {
 	
@@ -26,7 +26,8 @@ public class Main {
 	
 	controler= new Controler(n);
 	}
-	
+/** This method is the main's menu. Here we receive all the information that we need.
+ */
 	public void menu() {
 		int option=0;
 		while(option!=7) {
@@ -67,6 +68,9 @@ public class Main {
 			
 	}
 	
+/** This method receive the info that we need to create a product
+ * @return message is the message that say if the product was created or not
+ */
 	public String createP() {
 		
 		System.out.println("Write the name of the product");
@@ -82,6 +86,11 @@ public class Main {
 		
 		return message;
 	}
+	
+/** This method create, if it does not exists, the associate product of a residue.
+ * @param pProname is the name of the product that doesnt exist
+ * @return message is the message that say if the product was created or not
+ */
 public String createProductWithName(String pProname) {
 		
 		System.out.println("Write the id of the product");
@@ -95,6 +104,9 @@ public String createProductWithName(String pProname) {
 		return message;
 	}
 
+/** This method receive the information that we need to create a residue.
+ * @return message is the message that say if the residue was created or not
+ */
 	public String createResidues() {
 		String message="";
 		
@@ -108,8 +120,13 @@ public String createProductWithName(String pProname) {
 			createProductWithName(proname);
 		}
 		
-			System.out.println("What kind of residue do you want to register? \n 1. Biodegradable \n 2. Recyclable \n 3. Inert ");
-			int optionR=lectorN.nextInt();
+		System.out.println("What kind of residue do you want to register? \n 1. Biodegradable \n 2. Recyclable \n 3. Inert ");
+		int optionR=lectorN.nextInt();
+				
+		while(optionR!=1 && optionR!=2 && optionR!=3) {
+			System.out.println("Incorrect option. Write again what residue do you want to register? \n 1. Biodegradable \n 2. Recyclable \n 3. Inert ");
+			optionR=lectorN.nextInt();
+		}
 			
 			System.out.println("Write the name");
 			String pname=lectorL.nextLine();
@@ -125,7 +142,7 @@ public String createProductWithName(String pProname) {
 			System.out.println("Write the time of descomposition");
 			int pdesTime=lectorN.nextInt();
 			
-			System.out.println("OJO CON UBI" + controler.ubicationR());
+			System.out.println(controler.ubicationR());
 			
 				switch(optionR) {
 				
@@ -142,32 +159,33 @@ public String createProductWithName(String pProname) {
 							else
 								pcomposting=true;	
 					
-						message=controler.addResiduo(pindicator, pname, porigin,pcolor, pdesTime, pcomposting);
+						message=controler.addResiduo(proname,pindicator, pname, porigin,pcolor, pdesTime, pcomposting);
 						break;
 						
 				case(2):
 
-						System.out.println("Write the type");
-						String pType=lectorL.nextLine();
-							
+						String pType=type();
 						System.out.println("Write the description");
 						String pdescription=lectorL.nextLine();
 
-						message=controler.addResiduo(pindicator, pname, porigin, pcolor, pdesTime, pType, pdescription);	
+						message=controler.addResiduo(proname,pindicator, pname, porigin, pcolor, pdesTime, pType, pdescription);	
 						break;
 
 				case(3):
 
 						System.out.println("Write the recommendation");
-						String pRecommendation=lectorN.nextLine();
+						String pRecommendation=lectorL.nextLine();
 
-						message=controler.addResiduo(pindicator, pname, porigin, pcolor, pdesTime, pRecommendation);	
+						message=controler.addResiduo(proname,pindicator, pname, porigin, pcolor, pdesTime, pRecommendation);	
 						break;
 				}
 		
 		return message;
 	}
 	
+/** This method show the information of a residue depending the name or id of it
+ * @return info is the message that conteins all the information about the residue founded.
+ */
 	public String searchNameOrId() {
 		
 		String info="";
@@ -191,11 +209,31 @@ public String createProductWithName(String pProname) {
 		return info;
 	}
 	
+/** This method receive the information about the origin of the residue using the constants of the class Product
+ * @return porigin is the origin of the residue
+ */
 	public String origin() {
-		
-		System.out.println("Write the origin. \n 1. Industrie \n 2. Domicilie \n 3. Municipal \n 4. Construction \n 5. Hospitalary");
-		int option=lectorN.nextInt();
 		String porigin=" ";
+		int option=0;
+		
+		System.out.println("Write the origin. "
+				+ "\n 1." + controler.getInd() 
+				+ "\n 2." + controler.getDom() 
+				+ "\n 3." + controler.getMun() 
+				+ "\n 4." + controler.getCons() 
+				+ "\n 5." + controler.getHos());
+		
+		option=lectorN.nextInt();
+		
+		while(option!=1 && option!=2 && option!=3 && option!=4 && option!=5) {	
+			System.out.println("Wrong option. Please, write again the origin."
+					+ "\n 1." + controler.getInd() 
+					+ "\n 2." + controler.getDom() 
+					+ "\n 3." + controler.getMun() 
+					+ "\n 4." + controler.getCons() 
+					+ "\n 5." + controler.getHos());
+			option=lectorN.nextInt();
+		}
 		
 		switch(option) {
 		
@@ -217,6 +255,50 @@ public String createProductWithName(String pProname) {
 		}
 		return porigin;
 	}
-	
+
+/** This method receive the information about the origin of the Recyclable residue using the constants of the class Recyclable
+ * @return pType is the type of the Recyclable product
+ */
+	public String type() {
+		
+		System.out.println("Write the type."
+				+ "\n 1." + controler.getP() 
+				+ "\n 2." + controler.getPb() 
+				+ "\n 3." + controler.getG() 
+				+ "\n 4." + controler.getPl() 
+				+ "\n 5." + controler.getM());
+		int  optionT=lectorN.nextInt();
+		
+		while(optionT!=1 && optionT!=2 && optionT!=3 && optionT!=4 && optionT!=5) {
+			System.out.println("Wrong option, please write the type again."
+					+ "\n 1." + controler.getP() 
+					+ "\n 2." + controler.getPb() 
+					+ "\n 3." + controler.getG() 
+					+ "\n 4." + controler.getPl() 
+					+ "\n 5." + controler.getM());
+			optionT=lectorN.nextInt();
+		}
+		String pType="";
+		
+		switch(optionT) {
+		case(1):
+			pType=controler.getP();
+			break;
+		case(2):
+			pType=controler.getPb();
+			break;
+		case(3):
+			pType=controler.getG();
+			break;
+		case(4):
+			pType=controler.getPl();
+			break;
+		case(5):
+			pType=controler.getM();
+			break;
+			
+		}
+		return pType;
+	}
 }
  

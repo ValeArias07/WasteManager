@@ -22,6 +22,10 @@ public class Product {
 		
 	}
 	
+/** This method created a new residue in the objet product
+ * @param residue if the object product that was created in the class Controler
+ * @return registered is the boolean that determinate if the residue was created or not
+ */
 	public boolean addResidue(Residue residue) {
 		boolean registered;
 		int ubi = ubicationR();
@@ -36,7 +40,10 @@ public class Product {
 		return registered;
 	}
 	
-	
+/** This method search in the array of residues if the name is repeated or not.
+ * @param pname is the parameter of the new residue pname!=" ".
+ * @return info is the message that will show if the name is repeated or not
+ */
 	public boolean repeatNameR(String pProname){
 
 	    boolean duplicated=false;
@@ -53,7 +60,10 @@ public class Product {
 	    }
 	    return duplicated;
 	  }
-
+	
+/**This method search the ubication in the residues array to created a new residue 
+ * @return ubi is the ubication where the new residue will be created
+ */
 	public int ubicationR() {
 		
 		int ubi=0;
@@ -67,7 +77,7 @@ public class Product {
 			}
 		return ubi;
 		}
-	
+//Getters and Setters methods	
 	public String getProname() {
 		return proName;
 	}
@@ -79,11 +89,15 @@ public class Product {
 	public String getProdescription() {
 		return prodescription;
 	}
-
+	
+/** This toString method contains all the information about a product
+ */
 	public String toString() {
 		return "\n Product name: "  + proName + "\n identificator: " + id + "\n Description: "+ prodescription;
 	}
 	
+/** This toString method contains all the information about a residues of the objetc product
+ */
 	public String toStringR() {
 		String infoR="";
 		
